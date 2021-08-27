@@ -6,8 +6,8 @@
 % Unfolding of compound eye
 
 
-if ~exist(dataFolder,'dir')
-    mkdir(dataFolder)
+if ~exist(saveDir,'dir')
+    mkdir(saveDir)
 end
 
 % - Data files - %
@@ -16,6 +16,10 @@ niiData = load_nii(datafile);
 % read in the lables
 niiLbl = load_nii(labelfile);
 
+%Use manually labelled voxels as input
+% The annotated lens surface:
+% label=2, lens surface
+lensSurfIdx = find(niiLbl.img == lensLabelValue);  
 
 %% Find the lens surface from manual input
 
@@ -163,8 +167,6 @@ for IdxSection = 1:NumSectionX*NumSectionY
         [Nx,Ny,Nz] = surfnorm(xGrid,yGrid,reshape(surfVal,size(xGrid)));
         surfPolyDir = [Nx(:),Ny(:),Nz(:)];
         
-        % Handle support region:
-        surfPolyDir(~acptIdx,:) = 0;
     end
     
     % % Display:

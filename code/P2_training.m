@@ -10,27 +10,23 @@
 % or use old training pictures (2), or
 % use old dictionaries from other data (3)
 
-%clear all; close all; clc;
-clc
 %% Files and Folders:
 
 % - Add code paths - %
 
 % - Data files - %
-datafileprefix = [fileprefix '_dens' num2str(density) '_'];
-
 
 trainTime = zeros(NumSectionX*NumSectionY,1);
 
 
 %%  % for IdxSection = -1
 for IdxSection = 1:NumSectionX*NumSectionY
-    fprintf(['Now train subregion No.' IdxSection])
+    fprintf(['Now train subregion No.' num2str(IdxSection)])
     tic
     
     
-    niiDataUnfoldFile = [dataFolder datafileprefix '_' num2str(IdxSection) '_' fittingmethod '_unfoldVolume.nii.gz']; %Unfolded image
-    niiLblUnfoldFile  = [dataFolder datafileprefix '_' num2str(IdxSection) '_' fittingmethod '_unfoldLabels.nii.gz']; %Unfolded labels
+    niiDataUnfoldFile = [dataFolder savefileprefix '_' num2str(IdxSection) '_' fittingmethod '_unfoldVolume.nii.gz']; %Unfolded image
+    niiLblUnfoldFile  = [dataFolder savefileprefix '_' num2str(IdxSection) '_' fittingmethod '_unfoldLabels.nii.gz']; %Unfolded labels
     
     
     % - Load Unfolded Data - %
@@ -170,7 +166,7 @@ for IdxSection = 1:NumSectionX*NumSectionY
     dictionary = set_label_dict_prob(dictionary, D);
     
     % Export:
-    dictFileName = [dataFolder datafileprefix '_' num2str(IdxSection) '_dictionary.mat'];
+    dictFileName = [dataFolder savefileprefix '_' num2str(IdxSection) '_dictionary.mat'];
     save(dictFileName,'dictionary','dictopt','feat_model','feat_param','-v7.3');
     
     
