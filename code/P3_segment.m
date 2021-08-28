@@ -18,11 +18,11 @@ end
 for IdxSection = 1:NumSectionX*NumSectionY
 
     disp('Using pre-trained dictionary')
-    dictFileName = [dataFolder savefileprefix '_' num2str(IdxSection) '_dictionary.mat'];
+    dictFileName = [saveDir savefileprefix '_' num2str(IdxSection) '_dictionary.mat'];
     load(dictFileName);
     
-    niiDataUnfoldFile = [dataFolder savefileprefix '_' num2str(IdxSection) '_' fittingmethod '_unfoldVolume.nii.gz']; %Unfolded image
-    niiLblUnfoldFile  = [dataFolder savefileprefix '_' num2str(IdxSection) '_' fittingmethod '_unfoldLabels.nii.gz']; %Unfolded labels
+    niiDataUnfoldFile = [saveDir savefileprefix '_' num2str(IdxSection) '_' fittingmethod '_unfoldVolume.nii.gz']; %Unfolded image
+    niiLblUnfoldFile  = [saveDir savefileprefix '_' num2str(IdxSection) '_' fittingmethod '_unfoldLabels.nii.gz']; %Unfolded labels
     
     
     % - Load Unfolded Data - %
@@ -76,7 +76,7 @@ for IdxSection = 1:NumSectionX*NumSectionY
     
     % Export:
     textureConesNii = make_nii(uint8(lblVol),uSpace,uOrigin,2);
-    save_nii(textureConesNii,[dataFolder savefileprefix '_' num2str(IdxSection) '_textureCone_class_unfold.nii.gz']);
+    save_nii(textureConesNii,[saveDir savefileprefix '_' num2str(IdxSection) '_textureCone_class_unfold.nii.gz']);
     
 
     
@@ -113,7 +113,7 @@ for IdxSection = 1:NumSectionX*NumSectionY
     
     % Export:
     lblConesNii = make_nii(coneVol,uSpace,uOrigin,niiType);
-    save_nii(lblConesNii,[dataFolder savefileprefix '_' num2str(IdxSection) '_minSz' num2str(minSz) '_textureCones_labelled_unfold.nii.gz']);
+    save_nii(lblConesNii,[saveDir savefileprefix '_' num2str(IdxSection) '_minSz' num2str(minSz) '_textureCones_labelled_unfold.nii.gz']);
     
     
     fprintf('Cone labelled %d\n', IdxSection)

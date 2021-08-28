@@ -25,8 +25,8 @@ for IdxSection = 1:NumSectionX*NumSectionY
     tic
     
     
-    niiDataUnfoldFile = [dataFolder savefileprefix '_' num2str(IdxSection) '_' fittingmethod '_unfoldVolume.nii.gz']; %Unfolded image
-    niiLblUnfoldFile  = [dataFolder savefileprefix '_' num2str(IdxSection) '_' fittingmethod '_unfoldLabels.nii.gz']; %Unfolded labels
+    niiDataUnfoldFile = [saveDir savefileprefix '_' num2str(IdxSection) '_' fittingmethod '_unfoldVolume.nii.gz']; %Unfolded image
+    niiLblUnfoldFile  = [saveDir savefileprefix '_' num2str(IdxSection) '_' fittingmethod '_unfoldLabels.nii.gz']; %Unfolded labels
     
     
     % - Load Unfolded Data - %
@@ -166,7 +166,7 @@ for IdxSection = 1:NumSectionX*NumSectionY
     dictionary = set_label_dict_prob(dictionary, D);
     
     % Export:
-    dictFileName = [dataFolder savefileprefix '_' num2str(IdxSection) '_dictionary.mat'];
+    dictFileName = [saveDir savefileprefix '_' num2str(IdxSection) '_dictionary.mat'];
     save(dictFileName,'dictionary','dictopt','feat_model','feat_param','-v7.3');
     
     
@@ -176,7 +176,7 @@ for IdxSection = 1:NumSectionX*NumSectionY
     
 end
 %%
-writematrix(trainTime,[dataFolder 'trainingTime.csv'])
+writematrix(trainTime,[saveDir 'trainingTime.csv'])
 fprintf('Finished training! Continueing to Part 3 segmentation...\n')
 %%
 P3_segment
