@@ -62,8 +62,13 @@ for IdxSection = 1:NumSectionX*NumSectionY
     % Initial processing:
     im = niiData.img(:,:,sliceSelect);
     im(isnan(im)) = 0; % Replace NaNs with 0
-    im = im./255; %floats should be scaled to range [0-1]
-    %     im = im./max(im(:)); %floats should be scaled to range [0-1]
+    if dataBitDepth == 8
+        im = im./255; %floats should be scaled to range [0-1]
+    elseif dataBitDepth == 16
+        img = im./65536;
+    else
+        im = im./max(im(:)); %floats should be scaled to range [0-1]
+    end
     if trainType == 1   %the other slices use the last slice as initial guess
         if IdxSection~=1
             dictionary_old = dictionary;

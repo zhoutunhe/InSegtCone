@@ -13,6 +13,7 @@ savefileprefix = 'bee';
 datafile = 'D:\code\InSegtCone\data\60185_AM_F.nii.gz';
 % label file
 labelfile = 'D:\code\InSegtCone\data\60185_AM_F_manLabel.nii.gz';
+dataBitDepth = 8; %8 or 16 bit data?
 
 %label value
 maskLabelValue = 3; %cone label
