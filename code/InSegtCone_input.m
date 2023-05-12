@@ -38,7 +38,8 @@ lensUnfoldRangeUp  = 65; % How far to sample above the lens
 
 
 % parameters for training
-slicenumber = [88 90 94 96 92 88]; % can decide manually by picking a good slice
+slicenumber = ones(1,NumSectionX*NumSectionY)*90; % choose a slice number for training
+%slicenumber = [88 90 94 96 92 88]; % can decide manually by picking a good slice
 %startslice = 88;   If not defined, all the slices will be processed.
 %endslice  = 209;
 trainType = 1; % 4 ways of initialting the training: 
