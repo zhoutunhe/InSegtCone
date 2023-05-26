@@ -39,7 +39,8 @@ elseif strcmp(dataType,'amira')
 elseif strcmp(dataType,'nii')
     niiLbl = load_nii(fullfile(Lblfolder,labelfilename));
 end
-
+imgDim = size(niiData.img);
+niiLbl.img = imresize3(niiLbl.img,imgDim,'nearest');
 %Use manually labelled voxels as input
 % The annotated lens surface:
 % label=2, lens surface
@@ -48,6 +49,7 @@ lensSurfIdx = find(niiLbl.img == lensLabelValue);
 %% Find the lens surface from manual input
 
 imgDim = size(niiData.img);
+
 [rL,cL,sL] = ind2sub(imgDim,lensSurfIdx); %Voxel coordinates
 
 % Display / Sanity Check:
