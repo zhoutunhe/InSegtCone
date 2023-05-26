@@ -48,7 +48,6 @@ lensSurfIdx = find(niiLbl.img == lensLabelValue);
 
 %% Find the lens surface from manual input
 
-imgDim = size(niiData.img);
 
 [rL,cL,sL] = ind2sub(imgDim,lensSurfIdx); %Voxel coordinates
 
